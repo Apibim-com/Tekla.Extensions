@@ -161,12 +161,32 @@ The Tekla.Extensions library makes use of the 3rd party software package, under 
 
 Create the ussie if you have any question or problems using the library. Our contributors will try to help you
 
-### Tasks to do
-- [x] Make nuget package
-- [x] Add Assebmy and Part class
-- [ ] Add more examples for readme file
-- [ ] Add example project
-- [ ] Make Tests 
-- [ ] Add Forms Dialogs
-- [ ] Add Intersections
-- [ ] Add Geometry core 3d
+## ⚠️ Important Legal Notice
+
+### Tekla API Requirements
+
+This project uses the Tekla Structures API, which is proprietary software owned by Trimble.
+
+**Requirements:**
+- A valid Tekla Structures license is required to use this software
+- The Tekla API libraries (DLLs) are NOT included in this repository
+- Users must have their own licensed copy of Tekla Structures installed
+
+**Commercial Use:**
+- This code is provided for educational and personal use
+- Commercial distribution of applications built with Tekla API requires membership in the Tekla Partners Program
+- See [Tekla Developer Policy](https://developer.tekla.com/policy) for details
+
+### Disclaimer
+
+This is an independent open-source project and is not affiliated with, endorsed by, 
+or supported by Trimble, Tekla, or any of their affiliated companies.
+
+The Tekla® name and logo are registered trademarks of Trimble Inc. or its affiliates.
+
+## License
+
+This project code is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+Note: This license applies ONLY to the code in this repository, NOT to the Tekla API itself, 
+which is subject to Trimble's licensing terms.
