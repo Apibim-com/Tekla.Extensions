@@ -66,6 +66,14 @@ public static class CuttingHelper
         _ = fitting.Insert();
         return fitting;
     }
+
+    /// <summary>
+    /// Cuts one beam by another using a cutting plane oriented by a cross vector.
+    /// </summary>
+    /// <param name="beamToCut">The beam to be cut.</param>
+    /// <param name="beamCuttedBy">The beam defining the cutting plane.</param>
+    /// <param name="vectorCross">The cross vector for plane orientation.</param>
+    /// <returns>The created cutting plane object.</returns>
     public static ModelObject CutOneBeamByAnotherPlane(Beam beamToCut, Beam beamCuttedBy, Vector vectorCross)
     {
         Plane plane = new();
@@ -81,6 +89,15 @@ public static class CuttingHelper
         _ = fitting.Insert();
         return fitting;
     }
+
+    /// <summary>
+    /// Cuts a part by creating a fitting defined by two points and a cross vector.
+    /// </summary>
+    /// <param name="partToCut">The part to be cut.</param>
+    /// <param name="startPoint">The starting point of the fitting plane.</param>
+    /// <param name="endPoint">The ending point of the fitting plane.</param>
+    /// <param name="cross">The cross vector for plane orientation.</param>
+    /// <returns>The created fitting object.</returns>
     public static ModelObject CutBeamByTwoPointsFitting(Part partToCut, Point startPoint, Point endPoint, Vector cross)
     {
         Plane plane = new();
@@ -93,6 +110,15 @@ public static class CuttingHelper
         _ = fitting.Insert();
         return fitting;
     }
+
+    /// <summary>
+    /// Cuts a part by creating a cutting plane defined by two points and a cross vector.
+    /// </summary>
+    /// <param name="partToCut">The part to be cut.</param>
+    /// <param name="startPoint">The starting point of the cutting plane.</param>
+    /// <param name="endPoint">The ending point of the cutting plane.</param>
+    /// <param name="cross">The cross vector for plane orientation.</param>
+    /// <returns>The created cut plane object.</returns>
     public static ModelObject CutBeamByTwoPointsCutPlane(Part partToCut, Point startPoint, Point endPoint, Vector cross)
     {
         Plane plane = new();
@@ -105,6 +131,14 @@ public static class CuttingHelper
         _ = cutPlane.Insert();
         return cutPlane;
     }
+
+    /// <summary>
+    /// Cuts a part using a polygonal cut defined by contour points.
+    /// </summary>
+    /// <param name="part">The part to be cut.</param>
+    /// <param name="points">The contour points defining the polygonal cut shape.</param>
+    /// <param name="thickness">The thickness of the polygonal cut (default is 200).</param>
+    /// <returns>The created polygon cut object.</returns>
     public static ModelObject CutPartByPolygon(Part part, IReadOnlyCollection<ContourPoint> points, double thickness = 200)
     {
         ContourPlate contourPlate = new();
@@ -128,6 +162,15 @@ public static class CuttingHelper
         _ = contourPlate.Delete();
         return booleanPart;
     }
+
+    /// <summary>
+    /// Cuts a part using a detail beam with specified profile and position.
+    /// </summary>
+    /// <param name="part">The part to be cut.</param>
+    /// <param name="segment">The line segment defining the beam's start and end points.</param>
+    /// <param name="profile">The profile string for the cutting beam.</param>
+    /// <param name="position">The position of the cutting beam.</param>
+    /// <returns>The created boolean part object.</returns>
     public static ModelObject CutPartByDetail(Part part, LineSegment segment, string profile, Position position)
     {
         BooleanPart booleanPart = new();

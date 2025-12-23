@@ -2,6 +2,9 @@
 
 namespace Tekla.Extension.Services;
 
+/// <summary>
+/// Provides utility methods for converting profile type strings to ProfileType enum values.
+/// </summary>
 public static class ProfileTypeEnumConverter
 {
 

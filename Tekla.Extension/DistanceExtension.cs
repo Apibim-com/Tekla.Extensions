@@ -4,8 +4,17 @@ using TSD = Tekla.Structures.Datatype;
 
 
 namespace Tekla.Extension;
+
+/// <summary>
+/// Extension methods for working with distance strings.
+/// </summary>
 public static class DistanceExtension
 {
+    /// <summary>
+    /// Parses a distance string and converts it to a list of double values in the current unit type.
+    /// </summary>
+    /// <param name="distances">The distance string to parse.</param>
+    /// <returns>A read-only list of distances as double values.</returns>
     public static IReadOnlyList<double> GetDistances(this string distances)
     {
         List<double> result = new();

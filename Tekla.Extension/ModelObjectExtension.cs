@@ -59,6 +59,14 @@ namespace Tekla.Extension
             return GetReportProperty<T>(modelObject, name, out _);
         }
 
+        /// <summary>
+        /// Gets a User Defined Attribute (UDA) property from a model object with generic type conversion.
+        /// </summary>
+        /// <typeparam name="T">The type to convert the property to (String, Int, or Double).</typeparam>
+        /// <param name="modelObject">Model object to get the UDA property from.</param>
+        /// <param name="name">Name of the UDA attribute.</param>
+        /// <param name="isSuccess">Indicates whether the property was successfully retrieved.</param>
+        /// <returns>The UDA property value converted to the specified type.</returns>
         public static T GetUDAProperty<T>(this ModelObject modelObject, string name, out bool isSuccess)
         {
             var converter = TypeDescriptor.GetConverter(typeof(T));
@@ -87,6 +95,10 @@ namespace Tekla.Extension
             }
         }
 
+        /// <summary>
+        /// Removes all User Defined Attributes (UDA) from a model object by setting them to null or minimum values.
+        /// </summary>
+        /// <param name="modelObject">Model object to remove UDAs from.</param>
         public static void RemoveAllUDA(this ModelObject modelObject)
         {
             Hashtable  hashtable = new Hashtable();
@@ -102,15 +114,32 @@ namespace Tekla.Extension
                     modelObject.SetUserProperty (nameUDA, -2147483648.0);
             }
         }
+        /// <summary>
+        /// Gets a model object by its GUID string.
+        /// </summary>
+        /// <param name="model">The Tekla Structures model.</param>
+        /// <param name="guid">The GUID string of the object to retrieve.</param>
+        /// <returns>The model object with the specified GUID.</returns>
         public static ModelObject GetObjectByGuid(this Tekla.Structures.Model.Model model, string guid)
         {
             return model.SelectModelObject(model.GetIdentifierByGUID(guid));
         }
+        /// <summary>
+        /// Gets a model object by its GUID.
+        /// </summary>
+        /// <param name="model">The Tekla Structures model.</param>
+        /// <param name="guid">The GUID of the object to retrieve.</param>
+        /// <returns>The model object with the specified GUID.</returns>
         public static ModelObject GetObjectByGuid(this Tekla.Structures.Model.Model model, Guid guid)
         {
             return model.SelectModelObject(model.GetIdentifierByGUID(guid.ToString()));
         }
 
+        /// <summary>
+        /// Determines whether a model object is a connection-type object (Component, Connection, Detail, Seam, CustomPart, or RebarSplice).
+        /// </summary>
+        /// <param name="obj">The model object to check.</param>
+        /// <returns>True if the object is a connection type; otherwise, false.</returns>
         public static bool IsConnectionObject(this ModelObject obj)
         {
             bool result = false;
@@ -127,6 +156,11 @@ namespace Tekla.Extension
             }
             return result;
         }
+        /// <summary>
+        /// Determines whether a model object is an associative object (bolts, welds, rebars, loads, fittings, cuts, etc.).
+        /// </summary>
+        /// <param name="obj">The model object to check.</param>
+        /// <returns>True if the object is an associative type; otherwise, false.</returns>
         public static bool IsAssociativeObject(this ModelObject obj)
         {
             bool result = false;

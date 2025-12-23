@@ -9,10 +9,21 @@ namespace Tekla.Extension
     /// </summary>
     public static class AABBExtension
     {
+        /// <summary>
+        /// Zooms the view to fit the axis-aligned bounding box.
+        /// </summary>
+        /// <param name="aabb">The AABB to zoom to.</param>
         public static void Zoom(this AABB aabb)
         {
             _ = TSMUI.ViewHandler.ZoomToBoundingBox(aabb);
         }
+
+        /// <summary>
+        /// Combines two AABBs into a single AABB that encompasses both.
+        /// </summary>
+        /// <param name="aabb1">The first AABB.</param>
+        /// <param name="aabb2">The second AABB.</param>
+        /// <returns>A new AABB that contains both input AABBs.</returns>
         public static AABB Add(this AABB aabb1, AABB aabb2)
         {
             Point minPoint = PointExtension.MinPoint;
@@ -25,6 +36,12 @@ namespace Tekla.Extension
 
             return new AABB(minPoint, maxPoint);
         }
+
+        /// <summary>
+        /// Projects the AABB onto the XY plane, returning the four corner points at Z=0.
+        /// </summary>
+        /// <param name="aabb">The AABB to project.</param>
+        /// <returns>A collection of four points representing the projected AABB corners.</returns>
         public static ICollection<Point> ProjectToXYPlane(this AABB aabb)
         {
             Point point1 = new(aabb.MaxPoint);
@@ -36,6 +53,11 @@ namespace Tekla.Extension
             return new Point[] { point1, point2, point3, point4 };
         }
 
+        /// <summary>
+        /// Converts an axis-aligned bounding box to an oriented bounding box.
+        /// </summary>
+        /// <param name="aabb">The AABB to convert.</param>
+        /// <returns>An OBB equivalent to the AABB.</returns>
         public static OBB ToOBB(this AABB aabb)
         {
             Point center = aabb.MinPoint.GetCenterPoint(aabb.MaxPoint);
@@ -55,6 +77,11 @@ namespace Tekla.Extension
             return new OBB(center, vectors, extents);
         }
 
+        /// <summary>
+        /// Computes all eight vertices of the AABB.
+        /// </summary>
+        /// <param name="aabb">The AABB to compute vertices for.</param>
+        /// <returns>An array of eight points representing the AABB vertices.</returns>
         public static Point[] ComputeVertices(this AABB aabb)
         {
             return new Point[]

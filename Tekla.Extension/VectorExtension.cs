@@ -110,10 +110,21 @@ namespace Tekla.Extension
             return new(vectorPointTransformed - p0Transformed);
         }
 
+        /// <summary>
+        /// Translates a point by a vector using the vector's X, Y, and Z components.
+        /// </summary>
+        /// <param name="point">The point to translate.</param>
+        /// <param name="vector">The vector defining the translation direction and magnitude.</param>
         public static void Translate(this Point point, Vector vector)
         {
             point.Translate(vector.X, vector.Y, vector.Z);
         }
+        /// <summary>
+        /// Gets the squared length (magnitude) of a vector without calculating the square root.
+        /// Useful for performance-critical comparisons where actual length is not needed.
+        /// </summary>
+        /// <param name="vector">The vector to calculate the squared length for.</param>
+        /// <returns>The squared length of the vector.</returns>
         public static double GetLengthSquared(this Vector vector)
         {
             return vector.X * vector.X + vector.Y * vector.Y + vector.Z * vector.Z;

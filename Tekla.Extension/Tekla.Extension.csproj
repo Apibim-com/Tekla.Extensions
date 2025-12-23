@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">2023</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
@@ -20,13 +21,13 @@
   <PropertyGroup>
     <PackageId>Tekla.Extension.$(Configuration)</PackageId>
     <Authors>Yury Isachenkov</Authors>
-    <Company>Trimble Solutions Corporation</Company>
-    <PackageProjectUrl>https://github.com/Blogbotana/Tekla.Extensions/tree/main</PackageProjectUrl>
-    <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>Extension library for Tekla Structures $(Configuration)</Description>
+    <Company>Apibim SpA</Company>
+    <PackageProjectUrl>https://github.com/Apibim-com/Tekla.Extensions</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>A set of Tekla Structures extensions.</Description>
     <PackageReleaseNotes>More methods and features</PackageReleaseNotes>
-    <Copyright>Copyright © Yury Isachenkov 2023</Copyright>
+    <Copyright>Copyright © Apibim SpA 2025</Copyright>
     <PackageTags>Trimble Tekla Structures</PackageTags>
   </PropertyGroup>
   <!-- Version-specific NuGet package versioning (AssemblyVersion is in AssemblyInfo.cs) -->
@@ -204,22 +205,22 @@
   <!-- Tekla 2023 packages -->
   <ItemGroup Condition="$(DefineConstants.Contains('TEKLA2023'))">
     <PackageReference Include="Tekla.Structures" Version="2023.0.0" />
-    <PackageReference Include="Tekla.Structures.Catalogs" Version="2023.0.0" />
-    <PackageReference Include="Tekla.Structures.Datatype" Version="2023.0.0" />
-    <PackageReference Include="Tekla.Structures.Dialog" Version="2023.0.0" />
-    <PackageReference Include="Tekla.Structures.Drawing" Version="2023.0.0" />
-    <PackageReference Include="Tekla.Structures.Model" Version="2023.0.0" />
-    <PackageReference Include="Tekla.Structures.Plugins" Version="2023.0.0" />
+    <PackageReference Include="Tekla.Structures.Catalogs" Version="2023.0.1" />
+    <PackageReference Include="Tekla.Structures.Datatype" Version="2023.0.1" />
+    <PackageReference Include="Tekla.Structures.Dialog" Version="2023.0.1" />
+    <PackageReference Include="Tekla.Structures.Drawing" Version="2023.0.1" />
+    <PackageReference Include="Tekla.Structures.Model" Version="2023.0.1" />
+    <PackageReference Include="Tekla.Structures.Plugins" Version="2023.0.1" />
   </ItemGroup>
   <!-- Tekla 2024 packages -->
   <ItemGroup Condition="$(DefineConstants.Contains('TEKLA2024'))">
     <PackageReference Include="Tekla.Structures" Version="2024.0.0" />
-    <PackageReference Include="Tekla.Structures.Catalogs" Version="2024.0.0" />
-    <PackageReference Include="Tekla.Structures.Datatype" Version="2024.0.0" />
-    <PackageReference Include="Tekla.Structures.Dialog" Version="2024.0.0" />
-    <PackageReference Include="Tekla.Structures.Drawing" Version="2024.0.0" />
-    <PackageReference Include="Tekla.Structures.Model" Version="2024.0.0" />
-    <PackageReference Include="Tekla.Structures.Plugins" Version="2024.0.0" />
+    <PackageReference Include="Tekla.Structures.Catalogs" Version="2024.0.4" />
+    <PackageReference Include="Tekla.Structures.Datatype" Version="2024.0.4" />
+    <PackageReference Include="Tekla.Structures.Dialog" Version="2024.0.4" />
+    <PackageReference Include="Tekla.Structures.Drawing" Version="2024.0.4" />
+    <PackageReference Include="Tekla.Structures.Model" Version="2024.0.4" />
+    <PackageReference Include="Tekla.Structures.Plugins" Version="2024.0.4" />
   </ItemGroup>
   <!-- Tekla 2025 packages -->
   <ItemGroup Condition="$(DefineConstants.Contains('TEKLA2025'))">

@@ -11,7 +11,13 @@ namespace Tekla.Extension
     /// </summary>
     public static class PointExtension
     {
+        /// <summary>
+        /// Gets a point with maximum possible coordinate values.
+        /// </summary>
         public static Point MaxPoint => new Point(double.MaxValue, double.MaxValue, double.MaxValue);
+        /// <summary>
+        /// Gets a point with minimum possible coordinate values.
+        /// </summary>
         public static Point MinPoint => new Point(double.MinValue, double.MinValue, double.MinValue);
         /// <summary>
         /// Returns the center point between two points
@@ -171,6 +177,12 @@ namespace Tekla.Extension
             return lineSegments;
         }
 
+        /// <summary>
+        /// Compares two points coordinate by coordinate and writes the result to pointToWrite based on the comparison function.
+        /// </summary>
+        /// <param name="thisPoint">The point to compare from.</param>
+        /// <param name="pointToWrite">The point to write comparison results to.</param>
+        /// <param name="Comparer">Optional comparison function. Default returns the maximum of two values.</param>
         public static void ComparePoints(Point thisPoint, Point pointToWrite, Func<double, double, bool> Comparer = null)
         {
             Comparer ??= (x, y) => Math.Max(x, y) == x;
@@ -182,6 +194,11 @@ namespace Tekla.Extension
             if (Comparer(thisPoint.Z, pointToWrite.Z))
                 pointToWrite.Z = thisPoint.Z;
         }
+        /// <summary>
+        /// Gets the Axis-Aligned Bounding Box (AABB) for a collection of points representing a polygon.
+        /// </summary>
+        /// <param name="points">Collection of points representing the polygon.</param>
+        /// <returns>An AABB that encompasses all the points.</returns>
         public static AABB GetPolygonAABB(IEnumerable<Point> points)
         {
             Point min = MaxPoint;
@@ -196,6 +213,12 @@ namespace Tekla.Extension
             return new AABB(min, max);
         }
 
+        /// <summary>
+        /// Rounds each coordinate of a point to the nearest multiple of the specified number.
+        /// </summary>
+        /// <param name="point">The point to round.</param>
+        /// <param name="num">The number to round to the nearest multiple of.</param>
+        /// <returns>A point with rounded coordinates.</returns>
         public static Point RoundTo(this Point point, int num)
         {
             point.X = Math.Round(point.X / num, 0) * num;
@@ -203,6 +226,12 @@ namespace Tekla.Extension
             point.Z = Math.Round(point.Z / num, 0) * num;
             return point;
         }
+        /// <summary>
+        /// Rounds each coordinate of a point up to the nearest multiple of the specified number.
+        /// </summary>
+        /// <param name="point">The point to ceiling round.</param>
+        /// <param name="num">The number to round up to the nearest multiple of.</param>
+        /// <returns>A point with ceiling rounded coordinates.</returns>
         public static Point CeilingTo(this Point point, int num)
         {
             point.X = Math.Ceiling(point.X / num) * num;
@@ -210,6 +239,12 @@ namespace Tekla.Extension
             point.Z = Math.Ceiling(point.Z / num) * num;
             return point;
         }
+        /// <summary>
+        /// Rounds each coordinate of a point down to the nearest multiple of the specified number.
+        /// </summary>
+        /// <param name="point">The point to floor round.</param>
+        /// <param name="num">The number to round down to the nearest multiple of.</param>
+        /// <returns>A point with floor rounded coordinates.</returns>
         public static Point FloorTo(this Point point, int num)
         {
             point.X = Math.Floor(point.X / num) * num;
@@ -217,14 +252,32 @@ namespace Tekla.Extension
             point.Z = Math.Floor(point.Z / num) * num;
             return point;
         }
+        /// <summary>
+        /// Creates a new point with the X coordinate set to the specified value while keeping Y and Z unchanged.
+        /// </summary>
+        /// <param name="point">The original point.</param>
+        /// <param name="value">The new X coordinate value.</param>
+        /// <returns>A new point with the updated X coordinate.</returns>
         public static Point ResetX(this Point point, double value)
         {
             return new Point(value, point.Y, point.Z);
         }
+        /// <summary>
+        /// Creates a new point with the Y coordinate set to the specified value while keeping X and Z unchanged.
+        /// </summary>
+        /// <param name="point">The original point.</param>
+        /// <param name="value">The new Y coordinate value.</param>
+        /// <returns>A new point with the updated Y coordinate.</returns>
         public static Point ResetY(this Point point, double value)
         {
             return new Point(point.X, value, point.Z);
         }
+        /// <summary>
+        /// Creates a new point with the Z coordinate set to the specified value while keeping X and Y unchanged.
+        /// </summary>
+        /// <param name="point">The original point.</param>
+        /// <param name="value">The new Z coordinate value.</param>
+        /// <returns>A new point with the updated Z coordinate.</returns>
         public static Point ResetZ(this Point point, double value)
         {
             return new Point(point.X, point.Y, value);

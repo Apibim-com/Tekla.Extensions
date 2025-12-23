@@ -12,10 +12,26 @@ namespace Tekla.Extension;
 /// </summary>
 public static class GeometryExtension
 {
+    /// <summary>
+    /// Determines whether a test point lies on a line segment within a tolerance.
+    /// </summary>
+    /// <param name="lineSegment">The line segment to test against.</param>
+    /// <param name="testPoint">The point to test.</param>
+    /// <param name="tolerance">The distance tolerance (default is 0.01).</param>
+    /// <returns>True if the point is on the line segment within tolerance; otherwise, false.</returns>
     public static bool IsPointInLineSegment3d(LineSegment lineSegment, Point testPoint, double tolerance = 0.01)
     {
         return IsPointInLineSegment3d(lineSegment.Point1, lineSegment.Point2, testPoint, tolerance);
     }
+
+    /// <summary>
+    /// Determines whether a test point lies on a line segment defined by start and end points within a tolerance.
+    /// </summary>
+    /// <param name="startPoint">The starting point of the line segment.</param>
+    /// <param name="endPoint">The ending point of the line segment.</param>
+    /// <param name="testPoint">The point to test.</param>
+    /// <param name="tolerance">The distance tolerance (default is 0.01).</param>
+    /// <returns>True if the point is on the line segment within tolerance; otherwise, false.</returns>
     public static bool IsPointInLineSegment3d(Point startPoint, Point endPoint, Point testPoint, double tolerance = 0.01)
     {
         Vector lineVector = new Vector(endPoint - startPoint);
@@ -32,6 +48,14 @@ public static class GeometryExtension
             return distance <= tolerance;
         }
     }
+
+    /// <summary>
+    /// Determines whether a point is inside a polygon using the winding number algorithm.
+    /// </summary>
+    /// <param name="testPoint">The point to test.</param>
+    /// <param name="polygon">The polygon defined by a collection of points.</param>
+    /// <param name="includeLine">Whether to include points on the polygon boundary (default is true).</param>
+    /// <returns>True if the point is inside the polygon; otherwise, false.</returns>
     public static bool IsPointInsidePolygon(this Point testPoint, IReadOnlyCollection<Point> polygon, bool includeLine = true)
     {
         int windingNumber = 0;

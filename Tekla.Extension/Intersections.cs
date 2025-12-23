@@ -3,8 +3,18 @@ using System.Collections.Generic;
 using Tekla.Structures.Geometry3d;
 
 namespace Tekla.Extension;
+
+/// <summary>
+/// Provides methods for calculating intersections between geometric shapes.
+/// </summary>
 public static class Intersections
 {
+    /// <summary>
+    /// Gets all intersection points between two polygons.
+    /// </summary>
+    /// <param name="polygon1">The first polygon defined by points.</param>
+    /// <param name="polygon2">The second polygon defined by points.</param>
+    /// <returns>A collection of intersection points.</returns>
     public static IReadOnlyCollection<Point> GetIntersectionPoints(IReadOnlyList<Point> polygon1, IReadOnlyList<Point> polygon2)
     {
         var lineSegment1 = polygon1.GetLineSegmentsOfPolygon();
@@ -12,6 +22,12 @@ public static class Intersections
         return GetIntersectionPoints(lineSegment1, lineSegment2);
     }
 
+    /// <summary>
+    /// Gets all intersection points between two collections of line segments.
+    /// </summary>
+    /// <param name="segments1">The first collection of line segments.</param>
+    /// <param name="segments2">The second collection of line segments.</param>
+    /// <returns>A collection of intersection points.</returns>
     public static IReadOnlyCollection<Point> GetIntersectionPoints(IReadOnlyCollection<LineSegment> segments1, IReadOnlyCollection<LineSegment> segments2)
     {
         List<Point> result = new();
@@ -26,6 +42,13 @@ public static class Intersections
         return result;
     }
 
+    /// <summary>
+    /// Determines whether two line segments intersect and returns the intersection point if they do.
+    /// </summary>
+    /// <param name="segment1">The first line segment.</param>
+    /// <param name="segment2">The second line segment.</param>
+    /// <param name="intersectionPoint">The intersection point if the segments intersect; otherwise, null.</param>
+    /// <returns>True if the segments intersect; otherwise, false.</returns>
     public static bool IsLineSegmentsIntersect(LineSegment segment1, LineSegment segment2, out Point intersectionPoint)
     {
         intersectionPoint = null;

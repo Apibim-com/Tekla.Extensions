@@ -14,6 +14,11 @@ namespace Tekla.Extension
     /// </summary>
     public static class AssemblyExtension
     {
+        /// <summary>
+        /// Calculates the axis-aligned bounding box for an assembly by combining all parts' bounding boxes.
+        /// </summary>
+        /// <param name="assembly">The assembly to calculate the bounding box for.</param>
+        /// <returns>The AABB that encompasses the entire assembly.</returns>
         public static AABB GetBoundingBox(this Assembly assembly)
         {
             Point min = PointExtension.MinPoint;
@@ -36,6 +41,12 @@ namespace Tekla.Extension
             return new AABB(min, max);
         }
 
+        /// <summary>
+        /// Gets all parts in an assembly, optionally including parts from sub-assemblies.
+        /// </summary>
+        /// <param name="assembly">The assembly to get parts from.</param>
+        /// <param name="isIncludeSubAssemblies">Whether to include parts from sub-assemblies (default is false).</param>
+        /// <returns>A read-only collection of all parts in the assembly.</returns>
         public static IReadOnlyCollection<Part> GetAllPartsOfAssembly(this Assembly assembly, bool isIncludeSubAssemblies = false)
         {
             ICollection<Assembly> subAssemblies = isIncludeSubAssemblies ? GetSubAssemblies(assembly) : (new Assembly[] { assembly });
@@ -67,11 +78,23 @@ namespace Tekla.Extension
                 return assemblies;
             }
         }
+
+        /// <summary>
+        /// Calculates the oriented bounding box for an assembly by combining all parts' OBBs.
+        /// </summary>
+        /// <param name="assembly">The assembly to calculate the OBB for.</param>
+        /// <returns>The OBB that encompasses the entire assembly.</returns>
         public static OBB GetOBB(this Assembly assembly)
         {
             IEnumerable<OBB> obbs = assembly.GetAllPartsOfAssembly().Select(p => p.GetPartOBB());
             return OBBExtension.CombineOBBs(obbs);
         }
+
+        /// <summary>
+        /// Gets the assembly drawing associated with this assembly.
+        /// </summary>
+        /// <param name="assembly">The assembly to get the drawing for.</param>
+        /// <returns>The assembly drawing if it exists; otherwise, null.</returns>
         public static Tekla.Structures.Drawing.AssemblyDrawing GetAssemblyDrawing(this Assembly assembly)
         {
             int id = assembly.GetReportProperty<int>("DRAWING.ID");
@@ -88,6 +111,12 @@ namespace Tekla.Extension
             return null;
         }
 
+        /// <summary>
+        /// Finds all assemblies that are spatially around this assembly (within its bounding box).
+        /// </summary>
+        /// <param name="assembly">The assembly to search around.</param>
+        /// <param name="model">The model to search in (uses active model if null).</param>
+        /// <returns>A read-only collection of nearby assemblies.</returns>
         public static IReadOnlyCollection<Assembly> FindAssembliesAround(this Assembly assembly, Model model = null)
         {
             model ??= new Model();
