@@ -6,6 +6,49 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Tekla.Extension is an unofficial extension library for Tekla Structures Open API that provides LINQ-compatible extension methods and helper utilities to simplify working with Tekla Structures models. The library enables cleaner, more readable code by wrapping Tekla's ModelObjectEnumerator patterns with modern C# LINQ queries.
 
+## Code Signing
+
+The project uses two types of signing:
+
+### 1. Strong Name Signing (Always Active)
+- All assemblies are signed with `TeklaExtension.snk`
+- Configured via `<SignAssembly>true</SignAssembly>` in .csproj
+- Provides assembly identity and version binding
+- Public Key Token: `b8c053957cf87e11`
+
+### 2. Authenticode Signing (Optional for Release)
+- Uses X.509 certificate to verify publisher identity
+- Certificate file: `TeklaExtension.pfx` (not committed to git)
+- Password stored in `TEKLA_CERT_PASSWORD` environment variable
+- Timestamp server: http://timestamp.digicert.com
+
+**To enable Authenticode signing:**
+
+**Option 1: Using BuildAndPublish.bat (Recommended)**
+1. Place your `.pfx` certificate file in `Tekla.Extension\` folder (alongside TeklaExtension.snk)
+2. Run the build script with password:
+   ```batch
+   BuildAndPublish.bat /password:YOUR_CERT_PASSWORD
+   ```
+3. To build and publish to NuGet:
+   ```batch
+   BuildAndPublish.bat /password:YOUR_CERT_PASSWORD publish
+   ```
+
+**Option 2: Manual MSBuild**
+1. Place your `.pfx` certificate file in the project root (alongside TeklaExtension.snk)
+2. Set environment variable: `TEKLA_CERT_PASSWORD=your_certificate_password`
+3. Build with signing enabled: `msbuild /p:Configuration=2023 /p:Platform=x64 /p:SignWithAuthenticode=true`
+
+**To verify Authenticode signature:**
+```powershell
+Get-AuthenticodeSignature "path\to\Tekla.Extension.dll" | Format-List
+```
+
+**Requirements:**
+- Windows SDK (for signtool.exe)
+- Valid code signing certificate (.pfx)
+
 ## Build Commands
 
 This project uses MSBuild (not dotnet CLI) as it targets .NET Framework 4.8.
@@ -36,6 +79,18 @@ msbuild Tekla.Extension.sln /p:Configuration=2025 /p:Platform=x64
 ### Build all versions
 ```bash
 for %%v in (2020 2021 2022 2023 2024 2025) do msbuild Tekla.Extension.sln /p:Configuration=%%v /p:Platform=x64
+```
+
+### Build all versions using BuildAndPublish.bat
+```batch
+REM Build and pack all versions (no signing)
+BuildAndPublish.bat
+
+REM Build and pack with Authenticode signing
+BuildAndPublish.bat /password:YOUR_CERT_PASSWORD
+
+REM Build, sign, pack, and publish to NuGet
+BuildAndPublish.bat /password:YOUR_CERT_PASSWORD publish
 ```
 
 ### Default Configuration
