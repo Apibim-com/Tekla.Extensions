@@ -193,6 +193,7 @@ ClientBin/
 *.dbproj.schemaview
 *.jfm
 *.pfx
+*.snk
 *.publishsettings
 node_modules/
 orleans.codegen.cs
@@ -261,3 +262,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+nul

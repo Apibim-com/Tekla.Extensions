@@ -56,6 +56,15 @@ public static class ComponentHelper
                 _ = child.Delete();
         }
     }
+
+    /// <summary>
+    /// Gets an enum property from a component's UDA (User Defined Attribute).
+    /// </summary>
+    /// <typeparam name="T">The enum type to return.</typeparam>
+    /// <param name="component">The component to get the property from.</param>
+    /// <param name="attr">The attribute name.</param>
+    /// <param name="defaultNumber">The default value to use if the property is not found or is negative.</param>
+    /// <returns>The enum value from the UDA or the default value.</returns>
     public static T GetEnumProperty<T>(this BaseComponent component, string attr, int defaultNumber) where T : Enum
     {
         int number = component.GetUDAProperty<int>(attr, out _);
@@ -64,6 +73,14 @@ public static class ComponentHelper
 
         return (T)Enum.ToObject(typeof(T), number);
     }
+
+    /// <summary>
+    /// Gets a double property from a component's UDA (User Defined Attribute).
+    /// </summary>
+    /// <param name="component">The component to get the property from.</param>
+    /// <param name="attr">The attribute name.</param>
+    /// <param name="defaultNumber">The default value to use if the property is not found or is negative.</param>
+    /// <returns>The double value from the UDA or the default value.</returns>
     public static double GetDoubleProperty(this BaseComponent component, string attr, double defaultNumber)
     {
         double number = component.GetUDAProperty<double>(attr, out _);
@@ -72,6 +89,14 @@ public static class ComponentHelper
 
         return number;
     }
+
+    /// <summary>
+    /// Gets an integer property from a component's UDA (User Defined Attribute).
+    /// </summary>
+    /// <param name="component">The component to get the property from.</param>
+    /// <param name="attr">The attribute name.</param>
+    /// <param name="defaultNumber">The default value to use if the property is not found or is negative.</param>
+    /// <returns>The integer value from the UDA or the default value.</returns>
     public static int GetIntProperty(this BaseComponent component, string attr, int defaultNumber)
     {
         int number = component.GetUDAProperty<int>(attr, out _);
@@ -80,6 +105,14 @@ public static class ComponentHelper
 
         return number;
     }
+
+    /// <summary>
+    /// Gets a string property from a component's UDA (User Defined Attribute).
+    /// </summary>
+    /// <param name="component">The component to get the property from.</param>
+    /// <param name="attr">The attribute name.</param>
+    /// <param name="defaultString">The default value to use if the property is not found or is empty.</param>
+    /// <returns>The string value from the UDA or the default value.</returns>
     public static string GetStringProperty(this BaseComponent component, string attr, string defaultString)
     {
         string data = component.GetUDAProperty<string>(attr, out _);
@@ -88,6 +121,15 @@ public static class ComponentHelper
 
         return data;
     }
+
+    /// <summary>
+    /// Gets a typed value from an applied values dictionary with fallback to a default value.
+    /// </summary>
+    /// <typeparam name="T">The type of value to retrieve (string, int, or double).</typeparam>
+    /// <param name="appliedValues">The dictionary of applied values.</param>
+    /// <param name="attribute">The attribute name to look up.</param>
+    /// <param name="defaultValue">The default value to use if the attribute is not found or is invalid.</param>
+    /// <returns>The typed value from the dictionary or the default value.</returns>
     public static T GetAppliedValue<T>(this Dictionary<string, object> appliedValues, string attribute, T defaultValue)
     {
         if (appliedValues.TryGetValue(attribute, out object value))
@@ -122,6 +164,12 @@ public static class ComponentHelper
         }
         return defaultValue;
     }
+
+    /// <summary>
+    /// Gets all input points from a component's input definition.
+    /// </summary>
+    /// <param name="component">The component to get input points from.</param>
+    /// <returns>An array of input points from the component.</returns>
     public static Point[] GetInputPointsOfComponent(Component component)
     {
         List<Point> inputPoints = new();
@@ -154,6 +202,12 @@ public static class ComponentHelper
         }
         return inputPoints.ToArray();
     }
+
+    /// <summary>
+    /// Gets all input objects from a component's input definition.
+    /// </summary>
+    /// <param name="component">The component to get input objects from.</param>
+    /// <returns>A read-only collection of input model objects from the component.</returns>
     public static IReadOnlyCollection<ModelObject> GetInputObjectsOfComponent(Component component)
     {
         var model = new Tekla.Structures.Model.Model();

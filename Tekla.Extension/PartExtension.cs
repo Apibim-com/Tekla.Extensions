@@ -79,18 +79,38 @@ public static class PartExtension
         return new AABB(maximumPoint, minimumPoint);
     }
 
+    /// <summary>
+    /// Gets the weight of a part from its report properties.
+    /// </summary>
+    /// <param name="part">The part to get the weight from.</param>
+    /// <returns>The weight of the part.</returns>
     public static double GetWeight(this Part part)
     {
         return part.GetReportProperty<double>("profile weight");
     }
+    /// <summary>
+    /// Gets the height of a model object from its report properties.
+    /// </summary>
+    /// <param name="part">The model object to get the height from.</param>
+    /// <returns>The height of the object.</returns>
     public static double GetHeight(this ModelObject part)
     {
         return part.GetReportProperty<double>("HEIGHT");
     }
+    /// <summary>
+    /// Gets the length of a model object from its report properties.
+    /// </summary>
+    /// <param name="part">The model object to get the length from.</param>
+    /// <returns>The length of the object.</returns>
     public static double GetLength(this ModelObject part)
     {
         return part.GetReportProperty<double>("LENGTH");
     }
+    /// <summary>
+    /// Gets the single part drawing associated with a part.
+    /// </summary>
+    /// <param name="part">The part to get the drawing from.</param>
+    /// <returns>The SinglePartDrawing if it exists; otherwise, null.</returns>
     public static Tekla.Structures.Drawing.SinglePartDrawing GetPartDrawing(this Part part)
     {
         int id = part.GetReportProperty<int>("DRAWING.ID");
@@ -105,12 +125,24 @@ public static class PartExtension
         }
         return null;
     }
+    /// <summary>
+    /// Determines whether two parts are connected by bolts.
+    /// </summary>
+    /// <param name="part1">The first part to check.</param>
+    /// <param name="part2">The second part to check.</param>
+    /// <returns>True if the parts share at least one bolt group; otherwise, false.</returns>
     public static bool ArePartsBolted(this Part part1, Part part2)
     {
         IEnumerable<Guid> bolts1 = part1.GetBolts().ToIEnumerable<BoltGroup>().Select(b => b.Identifier.GUID);
         IEnumerable<Guid> bolts2 = part2.GetBolts().ToIEnumerable<BoltGroup>().Select(b => b.Identifier.GUID);
         return bolts1.Intersect(bolts2).Count() > 0;
     }
+    /// <summary>
+    /// Determines whether two parts are connected by welds.
+    /// </summary>
+    /// <param name="part1">The first part to check.</param>
+    /// <param name="part2">The second part to check.</param>
+    /// <returns>True if the parts share at least one weld; otherwise, false.</returns>
     public static bool ArePartWelded(this Part part1, Part part2)
     {
         IEnumerable<Guid> welds1 = part1.GetWelds().ToIEnumerable<BaseWeld>().Select(b => b.Identifier.GUID);
@@ -125,10 +157,20 @@ public static class PartExtension
         string profTypeStr = GetProfileTypeString(part);
         return ProfileTypeEnumConverter.GetProfileTypeFromString(profTypeStr);
     }
+    /// <summary>
+    /// Gets the profile type as a string from a model object's report properties.
+    /// </summary>
+    /// <param name="part">The model object to get the profile type from.</param>
+    /// <returns>The profile type string (e.g., "I", "L", "U", etc.).</returns>
     public static string GetProfileTypeString(this ModelObject part)
     {
         return part.GetReportProperty<string>("PROFILE_TYPE");
     }
+    /// <summary>
+    /// Gets the start point of a part from its report properties.
+    /// </summary>
+    /// <param name="part">The part to get the start point from.</param>
+    /// <returns>The start point of the part.</returns>
     public static Point GetStartPoint(this Part part)
     {
         double x = part.GetReportProperty<double>("START_X");
@@ -136,6 +178,11 @@ public static class PartExtension
         double z = part.GetReportProperty<double>("START_Z");
         return new Point(x, y, z);
     }
+    /// <summary>
+    /// Gets the end point of a part from its report properties.
+    /// </summary>
+    /// <param name="part">The part to get the end point from.</param>
+    /// <returns>The end point of the part.</returns>
     public static Point GetEndPoint(this Part part)
     {
         double x = part.GetReportProperty<double>("END_X");
@@ -143,6 +190,12 @@ public static class PartExtension
         double z = part.GetReportProperty<double>("END_Z");
         return new Point(x, y, z);
     }
+    /// <summary>
+    /// Gets the center line of a part as a line segment.
+    /// </summary>
+    /// <param name="part">The part to get the center line from.</param>
+    /// <param name="withCutsFittings">Whether to include cuts and fittings in the center line calculation. Default is true.</param>
+    /// <returns>A line segment representing the part's center line.</returns>
     public static LineSegment GetCenterLineSegment(this Part part, bool withCutsFittings = true)
     {
         ArrayList centerLine = part.GetCenterLine(withCutsFittings);

@@ -37,6 +37,9 @@ namespace Tekla.Extension
         /// Green color
         /// </summary>
         public static Color Green => new(0.0, 1.0, 0.0);
+        /// <summary>
+        /// Dark green color
+        /// </summary>
         public static Color DarkGreen => new(0.0, 0.5, 0.0);
         /// <summary>
         /// Purple color
@@ -133,6 +136,12 @@ namespace Tekla.Extension
 
         #endregion
         #region Arrow Methods
+        /// <summary>
+        /// Draws a cross (X shape) at the specified point.
+        /// </summary>
+        /// <param name="point">The center point of the cross.</param>
+        /// <param name="colorOfCross">The color of the cross (default is black).</param>
+        /// <param name="length">The length of the cross arms (default is 100).</param>
         public static void DrawCross(this Point point, Color colorOfCross = null, double length = 100)
         {
             colorOfCross ??= Black;
@@ -149,6 +158,14 @@ namespace Tekla.Extension
             DrawLine(point3, point4, colorOfCross);
         }
 
+        /// <summary>
+        /// Draws an arrow from point1 to point2 with an arrowhead at point2.
+        /// </summary>
+        /// <param name="point1">The starting point of the arrow.</param>
+        /// <param name="point2">The ending point (tip) of the arrow.</param>
+        /// <param name="color">The color of the arrow (default is red).</param>
+        /// <param name="xSize">The size of the arrowhead in the X direction (default is 100).</param>
+        /// <param name="ySize">The size of the arrowhead in the Y direction (default is 100).</param>
         public static void DrawArrow(Point point1, Point point2, Color color = null, double xSize = 100, double ySize = 100)
         {
             color ??= Red;
@@ -173,21 +190,48 @@ namespace Tekla.Extension
             DrawLine(point2, pointOfTriangle3, color);
             DrawLine(point1, point2, color);
         }
+
+        /// <summary>
+        /// Draws an arrow along a line segment with an arrowhead at the second point.
+        /// </summary>
+        /// <param name="segment">The line segment defining the arrow direction and length.</param>
+        /// <param name="color">The color of the arrow (default is blue).</param>
         public static void DrawArrow(LineSegment segment, Color color = null)
         {
             color ??= Blue;
             DrawArrow(segment.Point1, segment.Point2, color);
         }
+
+        /// <summary>
+        /// Draws an arrow from a point in the direction of a vector.
+        /// </summary>
+        /// <param name="point1">The starting point of the arrow.</param>
+        /// <param name="vector">The direction vector of the arrow.</param>
+        /// <param name="color">The color of the arrow.</param>
         public static void DrawArrow(Point point1, Vector vector, Color color = null)
         {
             color ??= Blue;
             DrawArrow(point1, point1 + vector, color);
         }
+
+        /// <summary>
+        /// Draws an arrow from a point in the direction of a vector with a specified length.
+        /// </summary>
+        /// <param name="point1">The starting point of the arrow.</param>
+        /// <param name="vector">The direction vector of the arrow.</param>
+        /// <param name="length">The length of the arrow (default is 500).</param>
+        /// <param name="color">The color of the arrow (default is blue).</param>
         public static void DrawArrow(Point point1, Vector vector, double length = 500, Color color = null)
         {
             color ??= Blue;
             DrawArrow(point1, point1 + (vector.GetNormal() * length), color);
         }
+
+        /// <summary>
+        /// Draws a vector starting from the origin point (0,0,0).
+        /// </summary>
+        /// <param name="vector">The vector to draw.</param>
+        /// <param name="color">The color of the vector (default is red).</param>
         public static void DrawVector(this Vector vector, Color color = null)
         {
             color ??= Red;
@@ -195,6 +239,12 @@ namespace Tekla.Extension
         }
         #endregion
         #region CoordinateSystem Methods
+        /// <summary>
+        /// Draws a coordinate system showing the X, Y, and Z axes.
+        /// </summary>
+        /// <param name="coordinateSystem">The coordinate system to draw.</param>
+        /// <param name="colorOfText">The color for axis labels (default is black).</param>
+        /// <param name="comment">An optional comment to display.</param>
         public static void DrawCS(this CoordinateSystem coordinateSystem, Color colorOfText = null, string comment = "")
         {
             colorOfText ??= Black;
@@ -216,6 +266,12 @@ namespace Tekla.Extension
         }
         #endregion
         #region Polygons
+        /// <summary>
+        /// Draws an arc by dividing it into line segments.
+        /// </summary>
+        /// <param name="arc">The arc to draw.</param>
+        /// <param name="steps">The number of line segments to divide the arc into (default is 10).</param>
+        /// <param name="color">The color of the arc (default is blue).</param>
         public static void DrawArc(this Arc arc, int steps = 10, Color color = null)
         {
             color ??= Blue;
@@ -226,6 +282,12 @@ namespace Tekla.Extension
             };
             graphicsDrawer.DrawPolyLine(polyline);
         }
+
+        /// <summary>
+        /// Draws a polygon defined by a collection of line segments.
+        /// </summary>
+        /// <param name="polygon">The collection of line segments forming the polygon.</param>
+        /// <param name="color">The color of the polygon (default is black).</param>
         public static void DrawPolygon(this IEnumerable<LineSegment> polygon, Color color = null)
         {
             color ??= Black;
@@ -234,6 +296,12 @@ namespace Tekla.Extension
                 DrawLine(line.Point1, line.Point2, color);
             }
         }
+
+        /// <summary>
+        /// Draws a polygon defined by a collection of points.
+        /// </summary>
+        /// <param name="polygon">The collection of points forming the polygon vertices.</param>
+        /// <param name="color">The color of the polygon (default is blue).</param>
         public static void DrawPolygon(this IEnumerable<Point> polygon, Color color = null)
         {
             color ??= Blue;
@@ -250,6 +318,12 @@ namespace Tekla.Extension
                 }
             }
         }
+
+        /// <summary>
+        /// Draws a mesh defined by vertices and triangle indices.
+        /// </summary>
+        /// <param name="vertexes">The collection of vertex points.</param>
+        /// <param name="triangles">The collection of triangle indices (every 3 indices form a triangle).</param>
         public static void DrawMesh(ICollection<Point> vertexes, ICollection<int> triangles)
         {
             Mesh mesh = new();
@@ -268,12 +342,25 @@ namespace Tekla.Extension
         }
         #endregion
         #region OBB and AABB
+        /// <summary>
+        /// Draws an oriented bounding box (OBB).
+        /// </summary>
+        /// <param name="obb">The oriented bounding box to draw.</param>
+        /// <param name="color">The color of the bounding box (default is black).</param>
+        /// <param name="drawPoints">Whether to draw the vertices of the bounding box (default is false).</param>
         public static void DrawObb(this OBB obb, Color color = null, bool drawPoints = false)
         {
             color ??= Black;
             Point[] array = obb.ComputeVertices();
             DrawBox(array, color, drawPoints);
         }
+
+        /// <summary>
+        /// Draws an axis-aligned bounding box (AABB).
+        /// </summary>
+        /// <param name="aabb">The axis-aligned bounding box to draw.</param>
+        /// <param name="color">The color of the bounding box (default is black).</param>
+        /// <param name="drawPoints">Whether to draw the vertices of the bounding box (default is false).</param>
         public static void DrawAABB(this AABB aabb, Color color = null, bool drawPoints = false)
         {
             color ??= Black;
@@ -318,6 +405,12 @@ namespace Tekla.Extension
         }
         #endregion
         #region Plane
+        /// <summary>
+        /// Draws a plane as a square with axes.
+        /// </summary>
+        /// <param name="plane">The plane to draw.</param>
+        /// <param name="length">The length of the plane sides (default is 100).</param>
+        /// <param name="color">The color of the plane (default is blue).</param>
         public static void DrawPlane(this Plane plane, double length = 100, Color color = null)
         {
             color ??= Blue;
@@ -335,6 +428,13 @@ namespace Tekla.Extension
             };
             DrawSquareMesh(points, color);
         }
+
+        /// <summary>
+        /// Draws a geometric plane as a square mesh.
+        /// </summary>
+        /// <param name="geometricPlane">The geometric plane to draw.</param>
+        /// <param name="length">The length of the plane sides (default is 100).</param>
+        /// <param name="color">The color of the plane (default is blue).</param>
         public static void DrawGeometricPlane(this GeometricPlane geometricPlane, double length = 100, Color color = null)
         {
             color ??= Blue;

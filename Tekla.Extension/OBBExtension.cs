@@ -10,6 +10,12 @@ namespace Tekla.Extension
     /// </summary>
     public static class OBBExtension
     {
+        /// <summary>
+        /// Combines multiple Oriented Bounding Boxes (OBBs) into a single OBB that encompasses all of them.
+        /// </summary>
+        /// <param name="obbs">Collection of OBBs to combine.</param>
+        /// <param name="offset">Optional offset to expand the combined OBB in all directions. Default is 0.</param>
+        /// <returns>A single OBB that encompasses all input OBBs.</returns>
         public static OBB CombineOBBs(this IEnumerable<OBB> obbs, double offset = 0)
         {
             if (obbs.Count() < 1)
@@ -39,6 +45,11 @@ namespace Tekla.Extension
             return new(transformedCenterPoint, coordinateSystem.AxisX, coordinateSystem.AxisY, coordinateSystem.AxisX.Cross(coordinateSystem.AxisY),
                 extentX + offset, extentY + offset, extentZ + offset);
         }
+        /// <summary>
+        /// Gets the maximum point (furthest corner) of an Oriented Bounding Box by comparing all vertices.
+        /// </summary>
+        /// <param name="obb">The OBB to get the maximum point from.</param>
+        /// <returns>The maximum point of the OBB.</returns>
         public static Point GetMaximumPoint(this OBB obb)
         {
             Point max = PointExtension.MaxPoint;
@@ -48,6 +59,11 @@ namespace Tekla.Extension
             }
             return max;
         }
+        /// <summary>
+        /// Gets the minimum point (nearest corner) of an Oriented Bounding Box by comparing all vertices.
+        /// </summary>
+        /// <param name="obb">The OBB to get the minimum point from.</param>
+        /// <returns>The minimum point of the OBB.</returns>
         public static Point GetMinimumPoint(this OBB obb)
         {
             Point min = PointExtension.MaxPoint;

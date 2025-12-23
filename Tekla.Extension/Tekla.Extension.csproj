@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Configuration Condition=" '$(Configuration)' == '' ">2023</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <LangVersion>latest</LangVersion>
     <ProjectGuid>{03C19A66-26C8-4572-A784-E0F59E513CD1}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -14,46 +15,76 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>TeklaExtension.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Tekla.Extension</PackageId>
-    <Version>1.0.0</Version>
     <Authors>Yury Isachenkov</Authors>
-    <Company>Trimble Solutions Corporation</Company>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Apibim SpA</Company>
+    <PackageProjectUrl>https://github.com/Apibim-com/Tekla.Extensions</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>A set of Tekla Structures extensions.</Description>
+    <PackageReleaseNotes>More methods and features</PackageReleaseNotes>
+    <Copyright>Copyright © Apibim SpA 2025</Copyright>
+    <PackageTags>Trimble Tekla Structures</PackageTags>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Tekla.Extension.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x64'">
+    <OutputPath>bin\2020\x64\</OutputPath>
+    <PackageOutputPath>bin\2020\x64\</PackageOutputPath>
+    <DefineConstants>TEKLA2020</DefineConstants>
+    <DocumentationFile>bin\2020\x64\Tekla.Extension.xml</DocumentationFile>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Tekla.Extension.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DocumentationFile>bin\Debug\Tekla.Extension.xml</DocumentationFile>
-    <DebugType>full</DebugType>
+    <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>bin\Release\Tekla.Extension.xml</DocumentationFile>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2021|x64'">
+    <OutputPath>bin\2021\x64\</OutputPath>
+    <PackageOutputPath>bin\2021\x64\</PackageOutputPath>
+    <DefineConstants>TEKLA2021</DefineConstants>
+    <DocumentationFile>bin\2021\x64\Tekla.Extension.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2022|x64'">
+    <OutputPath>bin\2022\x64\</OutputPath>
+    <PackageOutputPath>bin\2022\x64\</PackageOutputPath>
+    <DefineConstants>TEKLA2022</DefineConstants>
+    <DocumentationFile>bin\2022\x64\Tekla.Extension.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2023|x64'">
+    <OutputPath>bin\2023\x64\</OutputPath>
+    <PackageOutputPath>bin\2023\x64\</PackageOutputPath>
+    <DefineConstants>TEKLA2023</DefineConstants>
+    <DocumentationFile>bin\2023\x64\Tekla.Extension.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2024|x64'">
+    <OutputPath>bin\2024\x64\</OutputPath>
+    <PackageOutputPath>bin\2024\x64\</PackageOutputPath>
+    <DefineConstants>TEKLA2024</DefineConstants>
+    <DocumentationFile>bin\2024\x64\Tekla.Extension.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2025|x64'">
+    <OutputPath>bin\2025\x64\</OutputPath>
+    <PackageOutputPath>bin\2025\x64\</PackageOutputPath>
+    <DefineConstants>TEKLA2025</DefineConstants>
+    <DocumentationFile>bin\2025\x64\Tekla.Extension.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -106,7 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Tekla.Extension.nuspec" />
+    <None Include="TeklaExtension.snk" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DotNetZip">
@@ -118,27 +149,6 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
-    <PackageReference Include="Tekla.Structures">
-      <Version>2023.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Tekla.Structures.Catalogs">
-      <Version>2023.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Tekla.Structures.Datatype">
-      <Version>2023.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Tekla.Structures.Dialog">
-      <Version>2023.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Tekla.Structures.Drawing">
-      <Version>2023.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Tekla.Structures.Model">
-      <Version>2023.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Tekla.Structures.Plugins">
-      <Version>2023.0.0</Version>
-    </PackageReference>
     <PackageReference Include="Tekla.Technology.Akit5">
       <Version>5.8.17235.1</Version>
     </PackageReference>
@@ -149,5 +159,74 @@
       <Version>5.3.17206</Version>
     </PackageReference>
   </ItemGroup>
+  <!-- Tekla 2020 packages (uses legacy TeklaOpenAPI) -->
+  <ItemGroup Condition="$(DefineConstants.Contains('TEKLA2020'))">
+    <PackageReference Include="TeklaOpenAPI" Version="2020.0.0" />
+  </ItemGroup>
+  <!-- Tekla 2021 packages -->
+  <ItemGroup Condition="$(DefineConstants.Contains('TEKLA2021'))">
+    <PackageReference Include="Tekla.Structures" Version="2021.0.0" />
+    <PackageReference Include="Tekla.Structures.Catalogs" Version="2021.0.0" />
+    <PackageReference Include="Tekla.Structures.Datatype" Version="2021.0.0" />
+    <PackageReference Include="Tekla.Structures.Dialog" Version="2021.0.0" />
+    <PackageReference Include="Tekla.Structures.Drawing" Version="2021.0.0" />
+    <PackageReference Include="Tekla.Structures.Model" Version="2021.0.0" />
+    <PackageReference Include="Tekla.Structures.Plugins" Version="2021.0.0" />
+  </ItemGroup>
+  <!-- Tekla 2022 packages -->
+  <ItemGroup Condition="$(DefineConstants.Contains('TEKLA2022'))">
+    <PackageReference Include="Tekla.Structures" Version="2022.0.0" />
+    <PackageReference Include="Tekla.Structures.Catalogs" Version="2022.0.0" />
+    <PackageReference Include="Tekla.Structures.Datatype" Version="2022.0.0" />
+    <PackageReference Include="Tekla.Structures.Dialog" Version="2022.0.0" />
+    <PackageReference Include="Tekla.Structures.Drawing" Version="2022.0.0" />
+    <PackageReference Include="Tekla.Structures.Model" Version="2022.0.0" />
+    <PackageReference Include="Tekla.Structures.Plugins" Version="2022.0.0" />
+  </ItemGroup>
+  <!-- Tekla 2023 packages -->
+  <ItemGroup Condition="$(DefineConstants.Contains('TEKLA2023'))">
+    <PackageReference Include="Tekla.Structures" Version="2023.0.0" />
+    <PackageReference Include="Tekla.Structures.Catalogs" Version="2023.0.1" />
+    <PackageReference Include="Tekla.Structures.Datatype" Version="2023.0.1" />
+    <PackageReference Include="Tekla.Structures.Dialog" Version="2023.0.1" />
+    <PackageReference Include="Tekla.Structures.Drawing" Version="2023.0.1" />
+    <PackageReference Include="Tekla.Structures.Model" Version="2023.0.1" />
+    <PackageReference Include="Tekla.Structures.Plugins" Version="2023.0.1" />
+  </ItemGroup>
+  <!-- Tekla 2024 packages -->
+  <ItemGroup Condition="$(DefineConstants.Contains('TEKLA2024'))">
+    <PackageReference Include="Tekla.Structures" Version="2024.0.0" />
+    <PackageReference Include="Tekla.Structures.Catalogs" Version="2024.0.4" />
+    <PackageReference Include="Tekla.Structures.Datatype" Version="2024.0.4" />
+    <PackageReference Include="Tekla.Structures.Dialog" Version="2024.0.4" />
+    <PackageReference Include="Tekla.Structures.Drawing" Version="2024.0.4" />
+    <PackageReference Include="Tekla.Structures.Model" Version="2024.0.4" />
+    <PackageReference Include="Tekla.Structures.Plugins" Version="2024.0.4" />
+  </ItemGroup>
+  <!-- Tekla 2025 packages -->
+  <ItemGroup Condition="$(DefineConstants.Contains('TEKLA2025'))">
+    <PackageReference Include="Tekla.Structures" Version="2025.0.0" />
+    <PackageReference Include="Tekla.Structures.Catalogs" Version="2025.0.0" />
+    <PackageReference Include="Tekla.Structures.Datatype" Version="2025.0.0" />
+    <PackageReference Include="Tekla.Structures.Dialog" Version="2025.0.0" />
+    <PackageReference Include="Tekla.Structures.Drawing" Version="2025.0.0" />
+    <PackageReference Include="Tekla.Structures.Model" Version="2025.0.0" />
+    <PackageReference Include="Tekla.Structures.Plugins" Version="2025.0.0" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- Authenticode Signing Target -->
+  <Target Name="SignAssemblyWithAuthenticode" AfterTargets="Build" Condition="'$(SignWithAuthenticode)' == 'true' AND Exists('$(CertificateFile)')">
+    <PropertyGroup>
+      <SignToolPath Condition="'$(SignToolPath)' == '' AND Exists('C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe')">C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe</SignToolPath>
+      <SignToolPath Condition="'$(SignToolPath)' == '' AND Exists('C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe')">C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe</SignToolPath>
+      <SignToolPath Condition="'$(SignToolPath)' == '' AND Exists('C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64\signtool.exe')">C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64\signtool.exe</SignToolPath>
+    </PropertyGroup>
+    <Message Text="Signing assembly with Authenticode..." Importance="high" />
+    <Message Text="Certificate: $(CertificateFile)" Importance="high" />
+    <Message Text="Assembly: $(TargetPath)" Importance="high" />
+    <Exec Command="&quot;$(SignToolPath)&quot; sign /f &quot;$(CertificateFile)&quot; /p &quot;$(CertificatePassword)&quot; /t &quot;$(TimestampServer)&quot; /fd SHA256 /v &quot;$(TargetPath)&quot;" Condition="'$(SignToolPath)' != '' AND '$(CertificatePassword)' != ''" ContinueOnError="false" />
+    <Exec Command="&quot;$(SignToolPath)&quot; sign /f &quot;$(CertificateFile)&quot; /t &quot;$(TimestampServer)&quot; /fd SHA256 /v &quot;$(TargetPath)&quot;" Condition="'$(SignToolPath)' != '' AND '$(CertificatePassword)' == ''" ContinueOnError="false" />
+    <Warning Text="SignTool.exe not found. Please install Windows SDK to enable code signing." Condition="'$(SignToolPath)' == ''" />
+    <Message Text="Assembly signed successfully!" Importance="high" Condition="'$(SignToolPath)' != ''" />
+  </Target>
 </Project>

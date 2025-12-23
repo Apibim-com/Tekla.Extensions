@@ -5,14 +5,15 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Tekla.Extension")]
-[assembly: AssemblyDescription("Extension library for Tekla Structures")]
+[assembly: AssemblyTitle("Tekla.Extensions")]
+[assembly: AssemblyDescription("A set of Tekla Structures extensions.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Yury Isachenkov")]
-[assembly: AssemblyProduct("Tekla.Extension")]
-[assembly: AssemblyCopyright("Copyright © Yury Isachenkov 2023")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("Apibim SpA")]
+[assembly: AssemblyProduct("Apibim Tekla Extensions")]
+[assembly: AssemblyCopyright("Copyright © Apibim SpA 2025")]
+[assembly: AssemblyTrademark("Apibim®")]
 [assembly: AssemblyCulture("")]
+
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
@@ -32,5 +33,27 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2023.2.0.0")]
-[assembly: AssemblyFileVersion("2023.2.0.0")]
+
+// Version-specific assembly versions based on build configuration
+#if TEKLA2020
+[assembly: AssemblyVersion("2020.2.0.1")]
+[assembly: AssemblyFileVersion("2020.2.0.1")]
+#elif TEKLA2021
+[assembly: AssemblyVersion("2021.2.0.1")]
+[assembly: AssemblyFileVersion("2021.2.0.1")]
+#elif TEKLA2022
+[assembly: AssemblyVersion("2022.2.0.1")]
+[assembly: AssemblyFileVersion("2022.2.0.1")]
+#elif TEKLA2023
+[assembly: AssemblyVersion("2023.2.0.1")]
+[assembly: AssemblyFileVersion("2023.2.0.1")]
+#elif TEKLA2024
+[assembly: AssemblyVersion("2024.2.0.1")]
+[assembly: AssemblyFileVersion("2024.2.0.1")]
+#elif TEKLA2025
+[assembly: AssemblyVersion("2025.2.0.0")]
+[assembly: AssemblyFileVersion("2025.2.0.0")]
+#else
+[assembly: AssemblyVersion("2023.2.0.1")]
+[assembly: AssemblyFileVersion("2023.2.0.1")]
+#endif

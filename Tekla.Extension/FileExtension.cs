@@ -11,6 +11,9 @@ namespace Tekla.Extension
     /// </summary>
     public static class FileExtension
     {
+        /// <summary>
+        /// The name of the attributes folder.
+        /// </summary>
         public const string AttributeFolder = "attributes";
         /// <summary>
         /// Return only name of files for loading attributes
