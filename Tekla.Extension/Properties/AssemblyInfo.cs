@@ -5,14 +5,15 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Tekla.Extension")]
-[assembly: AssemblyDescription("Extension library for Tekla Structures")]
+[assembly: AssemblyTitle("Tekla.Extensions")]
+[assembly: AssemblyDescription("A set of Tekla Structures extensions.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Yury Isachenkov")]
-[assembly: AssemblyProduct("Tekla.Extension")]
-[assembly: AssemblyCopyright("Copyright © Yury Isachenkov 2023")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("Apibim SpA")]
+[assembly: AssemblyProduct("Apibim Tekla Extensions")]
+[assembly: AssemblyCopyright("Copyright © Apibim SpA 2025")]
+[assembly: AssemblyTrademark("Apibim®")]
 [assembly: AssemblyCulture("")]
+
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
