@@ -33,5 +33,27 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
+
+// Version-specific assembly versions based on build configuration
+#if TEKLA2020
+[assembly: AssemblyVersion("2020.2.0.0")]
+[assembly: AssemblyFileVersion("2020.2.0.0")]
+#elif TEKLA2021
+[assembly: AssemblyVersion("2021.2.0.0")]
+[assembly: AssemblyFileVersion("2021.2.0.0")]
+#elif TEKLA2022
+[assembly: AssemblyVersion("2022.2.0.0")]
+[assembly: AssemblyFileVersion("2022.2.0.0")]
+#elif TEKLA2023
 [assembly: AssemblyVersion("2023.2.0.0")]
 [assembly: AssemblyFileVersion("2023.2.0.0")]
+#elif TEKLA2024
+[assembly: AssemblyVersion("2024.2.0.0")]
+[assembly: AssemblyFileVersion("2024.2.0.0")]
+#elif TEKLA2025
+[assembly: AssemblyVersion("2025.2.0.0")]
+[assembly: AssemblyFileVersion("2025.2.0.0")]
+#else
+[assembly: AssemblyVersion("2023.2.0.0")]
+[assembly: AssemblyFileVersion("2023.2.0.0")]
+#endif

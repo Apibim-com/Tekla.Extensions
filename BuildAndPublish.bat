@@ -53,9 +53,9 @@ for %%v in (%VERSIONS%) do (
         exit /b 1
     )
 
-    REM Pack
+    REM Pack (old-style .NET Framework projects don't support GeneratePackageOnBuild)
     echo Packing NuGet package for Tekla %%v...
-    Tekla.Extension\nuget.exe pack Tekla.Extension\Tekla.Extension.csproj -Properties Configuration=%%v -OutputDirectory Tekla.Extension\bin\%%v\x64 -Verbosity quiet
+    Tekla.Extension\nuget.exe pack Tekla.Extension\Tekla.Extension.csproj -Properties Configuration=%%v;Platform=x64 -OutputDirectory Tekla.Extension\bin\%%v\x64 -Verbosity quiet
     if errorlevel 1 (
         echo ERROR: Pack failed for Tekla %%v
         pause
