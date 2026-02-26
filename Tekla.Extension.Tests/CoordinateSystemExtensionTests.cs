@@ -1,19 +1,12 @@
 using FluentAssertions;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Tekla.Structures;
+using Tekla.Extension.Tests.TestBase;
 using Tekla.Structures.Geometry3d;
-using Tekla.Structures.Internal;
-using Tekla.Structures.Model;
-using Tekla.Structures.ModelInternal;
-using Tekla.Structures.RemotingHelper;
 using Xunit;
 using static Tekla.Extension.Tests.TestHelpers;
 
 namespace Tekla.Extension.Tests
 {
-    public class CoordinateSystemExtensionTests
+    public class CoordinateSystemExtensionTests : TeklaModelTestBase
     {
         [Fact]
         public void GetAxisZ_GlobalCS_ReturnsUnitZ()
@@ -57,7 +50,6 @@ namespace Tekla.Extension.Tests
         [Fact]
         public void ToTransformationPlane_ReturnsNonNull()
         {
-            CDelegateSetter.SetInstanceForUnitTesting(new GenericDelegateFake<ReturnDefaultStrategy>());
             var cs = new CoordinateSystem(new Point(0, 0, 0), new Vector(1, 0, 0), new Vector(0, 1, 0));
             var tp = cs.ToTransformationPlane();
             tp.Should().NotBeNull();

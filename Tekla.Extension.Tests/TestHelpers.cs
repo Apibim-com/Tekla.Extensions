@@ -1,5 +1,10 @@
 using FluentAssertions;
+using System;
+using System.ComponentModel;
+using System.Security.Cryptography;
 using Tekla.Structures.Geometry3d;
+using Tekla.Structures.ModelInternal;
+using Tekla.Structures.RemotingHelper;
 
 namespace Tekla.Extension.Tests
 {
@@ -21,4 +26,5 @@ namespace Tekla.Extension.Tests
             actual.Z.Should().BeApproximately(expectedZ, Tolerance);
         }
     }
+
 }
