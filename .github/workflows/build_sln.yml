@@ -1,27 +1,38 @@
 name: CI
 
 on:
-  push:
-    branches: [ main ]
+  pull_request:
+    branches: [main]
 
 jobs:
-  build:
-    runs-on: [windows-latest]
+  build-and-test:
+    name: Tekla ${{ matrix.tekla }}
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false # keep other versions running if one fails
+      matrix:
+        tekla: [2020, 2021, 2022, 2023, 2024, 2025]
+
     steps:
-    - uses: actions/checkout@v3
-      
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1
-    
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.2.0
-      with:
-        nuget-api-key: $({secrets.NugetAPIKey})
-        nuget-version: '5.x'
-    
-    - name: Restore NuGet packages
-      run: nuget restore Tekla.Extension.sln
-    
-    - name: Build the Solution
-      run: msbuild Tekla.Extension.sln /p:Configuration=Release
-    
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+        with:
+          nuget-version: "6.x"
+      - name: Restore NuGet packages
+        run: nuget restore Tekla.Extension.sln
+      - name: Build solution
+        run: >
+          msbuild Tekla.Extension.sln 
+          /p:Configuration=${{ matrix.tekla }} 
+          /p:Platform=x64 
+          /p:SignAssembly=false 
+          /p:SignWithAuthenticode=false 
+          /m 
+          /verbosity:minimal 
+          /nologo

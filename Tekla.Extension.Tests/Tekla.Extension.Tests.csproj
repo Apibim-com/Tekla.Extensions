@@ -11,6 +11,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <PlatformTarget>x64</PlatformTarget>
     <NoWarn>NU1605</NoWarn>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x64'">
@@ -43,24 +44,6 @@
     <DefineConstants>TEKLA2025</DefineConstants>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
-  <ItemGroup>
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\element_catalog_cross_section.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\element_catalog_cross_section_sketch.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\element_catalog_cross_section_user.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_1.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_10.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_11.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_13.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_15.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_2.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_3.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_4.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_5.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_6.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_7.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_8.bmp" />
-    <Content Remove="C:\Users\Yura\.nuget\packages\tekla.structures.dialog\2023.0.1\contentFiles\any\net40\Resources\prtyp_tree_9.bmp" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.20.72" />
