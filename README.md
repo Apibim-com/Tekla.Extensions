@@ -149,10 +149,6 @@ using Tekla.Extensions;
         double netWeight = part.GetReportProperty<double>(" weight net ");
 ```
 
-## Licence
-
-The Tekla.Extensions library is made available under  [The 2-Clause BSD License](LICENSE.md).
-
 ## Third Party Licences
 The Tekla.Extensions library makes use of the 3rd party software package, under his associated licences
 *  'Tekla Structures open API' : https://www.tekla.com/terms-and-conditions/eula
