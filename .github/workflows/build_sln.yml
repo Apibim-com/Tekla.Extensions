@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tekla: [2020] #[2020, 2021, 2022, 2023, 2024, 2025]
+        tekla: [2020, 2021, 2022, 2023, 2024, 2025]
 
     steps:
       - name: Checkout
@@ -46,17 +46,16 @@ jobs:
 
       - name: Run tests
         run: >
-          vstest.console.exe
-          "Tekla.Extension.Tests\bin\${{ matrix.tekla }}\x64\net48\Tekla.Extension.Tests.dll"
-          /Logger:trx
-          /ResultsDirectory:"TestResults\${{ matrix.tekla }}"
+          dotnet test "Tekla.Extension.Tests\bin\${{ matrix.tekla }}\x64\net48\Tekla.Extension.Tests.dll" 
+          --logger "trx;LogFileName=results.trx" 
+          --results-directory "${{ github.workspace }}/TestResults/${{ matrix.tekla }}"
 
       - name: Publish test results
         uses: dorny/test-reporter@v1
         if: always()
         with:
           name: Tests – Tekla ${{ matrix.tekla }}
-          path: "TestResults\\${{ matrix.tekla }}\\results.trx"
+          path: "TestResults/${{ matrix.tekla }}/results.trx"
           reporter: dotnet-trx
 
       - name: Upload test artefact
@@ -64,5 +63,5 @@ jobs:
         if: always()
         with:
           name: test-results-${{ matrix.tekla }}
-          path: "TestResults\\${{ matrix.tekla }}\\results.trx"
+          path: "TestResults/${{ matrix.tekla }}/results.trx"
           if-no-files-found: warn
