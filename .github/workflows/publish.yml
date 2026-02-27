@@ -1,0 +1,85 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Pack Tekla ${{ matrix.tekla }}
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        tekla: [2021, 2022, 2023, 2024, 2025]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+        with:
+          nuget-version: "6.x"
+
+      - name: Restore NuGet packages
+        run: nuget restore Tekla.Extension.sln
+
+      - name: Build solution
+        run: >
+          msbuild Tekla.Extension.sln
+          /p:Configuration=${{ matrix.tekla }}
+          /p:Platform=x64
+          /p:SignWithAuthenticode=false
+          /m
+          /verbosity:minimal
+          /nologo
+
+      - name: Pack NuGet
+        run: >
+          nuget pack Tekla.Extension/Tekla.Extension.csproj
+          -Properties "Configuration=${{ matrix.tekla }};Platform=x64"
+          -OutputDirectory "Tekla.Extension/bin/${{ matrix.tekla }}/x64"
+          -Verbosity quiet
+
+      - name: Upload NuGet package
+        uses: actions/upload-artifact@v4
+        with:
+          name: nupkg-${{ matrix.tekla }}
+          path: Tekla.Extension/bin/${{ matrix.tekla }}/x64/*.nupkg
+
+  publish:
+    name: Publish to NuGet.org
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+        with:
+          nuget-version: "6.x"
+
+      - name: Download all NuGet packages
+        uses: actions/download-artifact@v4
+        with:
+          pattern: nupkg-*
+          merge-multiple: true
+          path: nupkgs
+
+      - name: Publish packages
+        shell: pwsh
+        run: |
+          $packages = Get-ChildItem -Path nupkgs -Filter *.nupkg
+          foreach ($pkg in $packages) {
+            Write-Host "Publishing $($pkg.Name)"
+            nuget push "$($pkg.FullName)" `
+              -Source https://api.nuget.org/v3/index.json `
+              -ApiKey $env:NUGET_API_KEY `
+              -NonInteractive
+          }
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}

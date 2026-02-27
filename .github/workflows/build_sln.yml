@@ -38,7 +38,6 @@ jobs:
           msbuild Tekla.Extension.sln
           /p:Configuration=${{ matrix.tekla }}
           /p:Platform=x64
-          /p:SignAssembly=false
           /p:SignWithAuthenticode=false
           /m
           /verbosity:minimal
