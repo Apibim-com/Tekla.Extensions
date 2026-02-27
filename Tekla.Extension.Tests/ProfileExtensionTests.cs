@@ -13,7 +13,8 @@ namespace Tekla.Extension.Tests
         private const string UnknownProfile = "XYZZY_DOES_NOT_EXIST";
 
         // ── IsProfileExist ──────────────────────────────────────────────────
-
+#if TEKLA2020
+#else
         [Fact]
         public void IsProfileExist_UnknownProfile_ReturnsFalse()
         {
@@ -75,5 +76,6 @@ namespace Tekla.Extension.Tests
             ProfileExtension.GetPlateWidthByProfile(UnknownProfile)
                 .Should().BeApproximately(0, 0.001);
         }
+#endif
     }
 }

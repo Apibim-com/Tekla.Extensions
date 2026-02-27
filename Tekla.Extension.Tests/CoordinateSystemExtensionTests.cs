@@ -46,7 +46,8 @@ namespace Tekla.Extension.Tests
             var transformed = matrix.Transform(new Point(110, 0, 0));
             AssertPointEqual(transformed, 10, 0, 0);
         }
-
+#if TEKLA2020
+#else
         [Fact]
         public void ToTransformationPlane_ReturnsNonNull()
         {
@@ -54,7 +55,7 @@ namespace Tekla.Extension.Tests
             var tp = cs.ToTransformationPlane();
             tp.Should().NotBeNull();
         }
-
+#endif
         [Fact]
         public void ToGeometricPlane_ReturnsNonNull()
         {

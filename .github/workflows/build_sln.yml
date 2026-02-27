@@ -9,8 +9,12 @@ jobs:
     name: Tekla ${{ matrix.tekla }}
     runs-on: windows-latest
 
+    permissions:
+      checks: write # required by dorny/test-reporter to post results
+      contents: read
+
     strategy:
-      fail-fast: false # keep other versions running if one fails
+      fail-fast: false
       matrix:
         tekla: [2020, 2021, 2022, 2023, 2024, 2025]
 
@@ -20,19 +24,43 @@ jobs:
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
         with:
           nuget-version: "6.x"
+
       - name: Restore NuGet packages
         run: nuget restore Tekla.Extension.sln
+
       - name: Build solution
         run: >
-          msbuild Tekla.Extension.sln 
-          /p:Configuration=${{ matrix.tekla }} 
-          /p:Platform=x64 
-          /p:SignAssembly=false 
-          /p:SignWithAuthenticode=false 
-          /m 
-          /verbosity:minimal 
+          msbuild Tekla.Extension.sln
+          /p:Configuration=${{ matrix.tekla }}
+          /p:Platform=x64
+          /p:SignWithAuthenticode=false
+          /m
+          /verbosity:minimal
           /nologo
+
+      - name: Run tests
+        run: >
+          dotnet test "Tekla.Extension.Tests\bin\${{ matrix.tekla }}\x64\net48\Tekla.Extension.Tests.dll" 
+          --logger "trx;LogFileName=results.trx" 
+          --results-directory "${{ github.workspace }}/TestResults/${{ matrix.tekla }}"
+
+      - name: Publish test results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Tests – Tekla ${{ matrix.tekla }}
+          path: "TestResults/${{ matrix.tekla }}/results.trx"
+          reporter: dotnet-trx
+
+      - name: Upload test artefact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.tekla }}
+          path: "TestResults/${{ matrix.tekla }}/results.trx"
+          if-no-files-found: warn
