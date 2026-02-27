@@ -1,7 +1,10 @@
 ﻿using Moq;
 using System;
 using Tekla.Structures.ModelInternal;
+#if TEKLA2020
+#else
 using Tekla.Structures.RemotingHelper;
+#endif
 
 namespace Tekla.Extension.Tests.TestBase
 {
@@ -14,7 +17,10 @@ namespace Tekla.Extension.Tests.TestBase
     {
         protected TeklaModelTestBase()
         {
+#if TEKLA2020
+#else
             CDelegateSetter.SetInstanceForUnitTesting(new GenericDelegateFake<ReturnDefaultStrategy>());
+#endif
         }
 
         public void Dispose()

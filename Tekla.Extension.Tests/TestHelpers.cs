@@ -4,7 +4,10 @@ using System.ComponentModel;
 using System.Security.Cryptography;
 using Tekla.Structures.Geometry3d;
 using Tekla.Structures.ModelInternal;
+#if TEKLA2020
+#else
 using Tekla.Structures.RemotingHelper;
+#endif
 
 namespace Tekla.Extension.Tests
 {
