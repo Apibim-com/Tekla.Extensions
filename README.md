@@ -1,7 +1,7 @@
 # Tekla.Extensions
-[![NuGet](https://img.shields.io/nuget/v/Tekla.Extension.svg?style=for-the-badge)](https://www.nuget.org/packages/Tekla.Extension/)
-[![Downloads](https://img.shields.io/nuget/dt/Tekla.Extension?style=for-the-badge)](https://www.nuget.org/packages/Tekla.Extension/)
-[![License](https://img.shields.io/github/license/Blogbotana/Tekla.Extensions.svg?style=for-the-badge)](https://github.com/Blogbotana/Tekla.Extensions/blob/main/LICENSE.md) 
+[![NuGet](https://img.shields.io/nuget/v/Tekla.Extension.svg)](https://www.nuget.org/packages/Tekla.Extension/)
+[![Downloads](https://img.shields.io/nuget/dt/Tekla.Extension)](https://www.nuget.org/packages/Tekla.Extension/)
+[![License](https://img.shields.io/github/license/Blogbotana/Tekla.Extensions.svg)](https://github.com/Blogbotana/Tekla.Extensions/blob/main/LICENSE.md) 
 
 The best **unofficial** library for Tekla Structures [Open API](https://developer.tekla.com/)
 
