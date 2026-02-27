@@ -29,6 +29,7 @@
     <PackageReleaseNotes>More methods and features</PackageReleaseNotes>
     <Copyright>Copyright © Apibim SpA 2025</Copyright>
     <PackageTags>Trimble Tekla Structures</PackageTags>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x64'">
     <OutputPath>bin\2020\x64\</OutputPath>
