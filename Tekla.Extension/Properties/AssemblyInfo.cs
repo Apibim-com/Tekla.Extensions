@@ -36,24 +36,24 @@ using System.Runtime.InteropServices;
 
 // Version-specific assembly versions based on build configuration
 #if TEKLA2020
-[assembly: AssemblyVersion("2020.0.1")]
-[assembly: AssemblyFileVersion("2020.0.1")]
+[assembly: AssemblyVersion("2020.0.2")]
+[assembly: AssemblyFileVersion("2020.0.2")]
 #elif TEKLA2021
-[assembly: AssemblyVersion("2021.0.1")]
-[assembly: AssemblyFileVersion("2021.0.1")]
+[assembly: AssemblyVersion("2021.0.2")]
+[assembly: AssemblyFileVersion("2021.0.2")]
 #elif TEKLA2022
-[assembly: AssemblyVersion("2022.0.1")]
-[assembly: AssemblyFileVersion("2022.0.1")]
+[assembly: AssemblyVersion("2022.0.2")]
+[assembly: AssemblyFileVersion("2022.0.2")]
 #elif TEKLA2023
-[assembly: AssemblyVersion("2023.0.1")]
-[assembly: AssemblyFileVersion("2023.0.1")]
+[assembly: AssemblyVersion("2023.0.2")]
+[assembly: AssemblyFileVersion("2023.0.2")]
 #elif TEKLA2024
-[assembly: AssemblyVersion("2024.0.1")]
-[assembly: AssemblyFileVersion("2024.0.1")]
+[assembly: AssemblyVersion("2024.0.2")]
+[assembly: AssemblyFileVersion("2024.0.2")]
 #elif TEKLA2025
-[assembly: AssemblyVersion("2025.0.1")]
-[assembly: AssemblyFileVersion("2025.0.1")]
+[assembly: AssemblyVersion("2025.0.2")]
+[assembly: AssemblyFileVersion("2025.0.2")]
 #else
-[assembly: AssemblyVersion("2023.0.1")]
-[assembly: AssemblyFileVersion("2023.0.1")]
+[assembly: AssemblyVersion("2023.0.2")]
+[assembly: AssemblyFileVersion("2023.0.2")]
 #endif
