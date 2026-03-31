@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.nuget.org/2006/v3">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <owners>Apibim SpA</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/Apibim-com/Tekla.Extensions</projectUrl>
+    <repository type="git" url="https://github.com/Apibim-com/Tekla.Extensions" />
+    <description>$description$</description>
+    <releaseNotes>More methods and features</releaseNotes>
+    <copyright>Copyright (c) Apibim SpA 2025</copyright>
+    <tags>Tekla TeklaStructures OpenAPI BIM Trimble LINQ Extensions</tags>
+    <icon>icon.png</icon>
+    <readme>docs\README.md</readme>
+  </metadata>
+  <files>
+    <file src="bin\$Configuration$\$Platform$\Tekla.Extension.dll" target="lib\net48\" />
+    <file src="bin\$Configuration$\$Platform$\Tekla.Extension.xml" target="lib\net48\" />
+    <file src="icon.png" target="" />
+    <file src="..\README.md" target="docs\" />
+  </files>
+</package>
