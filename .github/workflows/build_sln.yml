@@ -31,7 +31,13 @@ jobs:
           nuget-version: "6.x"
 
       - name: Restore NuGet packages
-        run: nuget restore Tekla.Extension.sln
+        run: >
+          msbuild Tekla.Extension.sln
+          /t:Restore
+          /p:Configuration=${{ matrix.tekla }}
+          /p:Platform=x64
+          /verbosity:minimal
+          /nologo
 
       - name: Build solution
         run: >

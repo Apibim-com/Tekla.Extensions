@@ -27,7 +27,13 @@ jobs:
           nuget-version: "6.x"
 
       - name: Restore NuGet packages
-        run: nuget restore Tekla.Extension.sln
+        run: >
+          msbuild Tekla.Extension.sln
+          /t:Restore
+          /p:Configuration=${{ matrix.tekla }}
+          /p:Platform=x64
+          /verbosity:minimal
+          /nologo
 
       - name: Build solution
         run: >
@@ -41,10 +47,14 @@ jobs:
 
       - name: Pack NuGet
         run: >
-          nuget pack Tekla.Extension/Tekla.Extension.csproj
-          -Properties "Configuration=${{ matrix.tekla }};Platform=x64"
-          -OutputDirectory "Tekla.Extension/bin/${{ matrix.tekla }}/x64"
-          -Verbosity quiet
+          msbuild Tekla.Extension/Tekla.Extension.csproj
+          /t:Pack
+          /p:Configuration=${{ matrix.tekla }}
+          /p:Platform=x64
+          /p:SignWithAuthenticode=false
+          /p:NoBuild=true
+          /verbosity:minimal
+          /nologo
 
       - name: Upload NuGet package
         uses: actions/upload-artifact@v4
