@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <Configurations>2020;2021;2022;2023;2024;2025;2026</Configurations>
+    <Configurations>2020;2021;2022;2023;2024;2025</Configurations>
     <Platforms>x64</Platforms>
     <Configuration Condition=" '$(Configuration)' == '' ">2023</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
