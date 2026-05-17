@@ -86,7 +86,7 @@
 
   <!-- Tekla.Structures.All version follows the configuration year (2020.0.1 ... 2025.0.1) -->
   <ItemGroup>
-    <PackageReference Include="Tekla.Structures.All" Version="$(Configuration).0.1" />
+    <PackageReference Include="Tekla.Structures.All" Version="$(Configuration).*" />
   </ItemGroup>
 
   <!-- Authenticode Signing Target -->
