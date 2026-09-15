@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tekla: [2020, 2021, 2022, 2023, 2024, 2025]
+        tekla: [2020, 2021, 2022, 2023, 2024, 2025, 2026]
 
     steps:
       - name: Checkout
@@ -50,22 +50,26 @@ jobs:
           /nologo
 
       - name: Run tests
+        # Tekla.Structures.All 2026 does not ship all runtime-only Tekla internals
+        # required by the mocked model/catalog tests. The 2026 build is still
+        # compiled here; run those tests on a machine with Tekla 2026 installed.
+        if: matrix.tekla != 2026
         run: >
           dotnet test "Tekla.Extension.Tests\bin\${{ matrix.tekla }}\x64\net48\Tekla.Extension.Tests.dll" 
           --logger "trx;LogFileName=results.trx" 
           --results-directory "${{ github.workspace }}/TestResults/${{ matrix.tekla }}"
 
       - name: Publish test results
+        if: always() && matrix.tekla != 2026
         uses: dorny/test-reporter@v1
-        if: always()
         with:
           name: Tests – Tekla ${{ matrix.tekla }}
           path: "TestResults/${{ matrix.tekla }}/results.trx"
           reporter: dotnet-trx
 
       - name: Upload test artefact
+        if: always() && matrix.tekla != 2026
         uses: actions/upload-artifact@v4
-        if: always()
         with:
           name: test-results-${{ matrix.tekla }}
           path: "TestResults/${{ matrix.tekla }}/results.trx"
