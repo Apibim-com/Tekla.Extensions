@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <Configurations>2020;2021;2022;2023;2024;2025</Configurations>
+    <Configurations>2020;2021;2022;2023;2024;2025;2026</Configurations>
     <Platforms>x64</Platforms>
     <Configuration Condition=" '$(Configuration)' == '' ">2023</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
@@ -15,7 +15,7 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <!-- Configuration names start with a digit (2020/2021/.../2025) so the SDK's
+    <!-- Configuration names start with a digit (2020/2021/.../2026) so the SDK's
          implicit "/define:$(Configuration)" would emit an invalid C# identifier. -->
     <DisableImplicitConfigurationDefines>true</DisableImplicitConfigurationDefines>
   </PropertyGroup>
@@ -57,13 +57,14 @@
     </AssemblyAttribute>
   </ItemGroup>
 
-  <!-- Per-Tekla-version values derived from $(Configuration) ("2020"..."2025") -->
+  <!-- Per-Tekla-version values derived from $(Configuration) ("2020"..."2026") -->
   <PropertyGroup>
     <OutputPath>bin\$(Configuration)\x64\</OutputPath>
     <PackageOutputPath>bin\$(Configuration)\x64\</PackageOutputPath>
     <DefineConstants>TRACE;TEKLA$(Configuration)</DefineConstants>
     <DocumentationFile>bin\$(Configuration)\x64\Tekla.Extension.xml</DocumentationFile>
     <Version>$(Configuration).0.3</Version>
+    <Version Condition="'$(Configuration)' == '2026'">2026.0.0</Version>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <ErrorReport>prompt</ErrorReport>
@@ -84,7 +85,7 @@
     <None Include="icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
-  <!-- Tekla.Structures.All version follows the configuration year (2020.0.1 ... 2025.0.1) -->
+  <!-- Tekla.Structures.All version follows the configuration year (2020.0.1 ... 2026.0.3) -->
   <ItemGroup>
     <PackageReference Include="Tekla.Structures.All" Version="$(Configuration).*" />
   </ItemGroup>
