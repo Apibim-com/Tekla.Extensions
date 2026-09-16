@@ -39,13 +39,9 @@
     </PackageReference>
   </ItemGroup>
 
-  <!-- Tekla.Structures.All version follows the configuration year (2020.0.1 ... 2026.0.2) -->
+  <!-- Tekla.Structures.All version follows the configuration year (2020.0.1 ... 2026.0.3) -->
   <ItemGroup>
     <PackageReference Include="Tekla.Structures.All" Version="$(Configuration).*" />
-  </ItemGroup>
-  <!-- The 2026 aggregate package does not include Tekla.Structures.Datatype. -->
-  <ItemGroup Condition="'$(Configuration)' == '2026'">
-    <PackageReference Include="Tekla.Structures.Datatype" Version="2026.0.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tekla.Extension\Tekla.Extension.csproj" />
